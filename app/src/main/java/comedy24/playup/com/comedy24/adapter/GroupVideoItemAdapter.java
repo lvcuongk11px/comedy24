@@ -1,8 +1,7 @@
-package comedy24.playup.com.comedy24;
+package comedy24.playup.com.comedy24.adapter;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import comedy24.playup.com.comedy24.object.GroupVideoItem;
+import comedy24.playup.com.comedy24.R;
+
 /**
  * Created by lequanghiep on 9/13/2016.
  */
-public class MyVideoAdapter extends BaseAdapter {
+public class GroupVideoItemAdapter extends BaseAdapter {
     private Context mContext;
-    private MyVideo[] listVideo;
+    private GroupVideoItem[] listVideo;
     private static LayoutInflater inflater = null;
 
-    public MyVideoAdapter(FragmentActivity groupVideo, MyVideo[] listVideo) {
+    public GroupVideoItemAdapter(FragmentActivity groupVideo, GroupVideoItem[] listVideo) {
         this.mContext = groupVideo;
         this.listVideo = listVideo;
         inflater = (LayoutInflater) this.mContext.
@@ -45,8 +47,7 @@ public class MyVideoAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View rowView;
-        Toast.makeText(mContext, "You Clicked", Toast.LENGTH_LONG).show();
-        rowView = inflater.inflate(R.layout.my_video, null);
+        rowView = inflater.inflate(R.layout.group_video_item, null);
         TextView tv = (TextView) rowView.findViewById(R.id.name);
         ImageView img = (ImageView) rowView.findViewById(R.id.imageView);
 

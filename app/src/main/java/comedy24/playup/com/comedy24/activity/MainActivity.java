@@ -1,4 +1,4 @@
-package comedy24.playup.com.comedy24;
+package comedy24.playup.com.comedy24.activity;
 
 import android.content.Context;
 import android.net.Uri;
@@ -17,10 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TabHost;
+
+import comedy24.playup.com.comedy24.R;
+import comedy24.playup.com.comedy24.fragment.GroupVideoFragment;
+import comedy24.playup.com.comedy24.fragment.MyListVideoFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, GroupVideo.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, GroupVideoFragment.OnFragmentInteractionListener, MyListVideoFragment.OnFragmentInteractionListener {
     private Context context = null;
 
     @Override
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = null;
         if (id == R.id.nav_camera) {
-            fragment = new GroupVideo();
+            fragment = new GroupVideoFragment();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -117,9 +120,9 @@ public class MainActivity extends AppCompatActivity
         FragmentTabHost  mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Tab 1", null), GroupVideo.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Tab 2", null), GroupVideo.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("Tab 3", null), GroupVideo.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Tab 1", null), GroupVideoFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Tab 2", null), MyListVideoFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("Tab 3", null), GroupVideoFragment.class, null);
     }
 
     @Override

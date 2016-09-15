@@ -1,13 +1,13 @@
-package comedy24.playup.com.comedy24;
+package comedy24.playup.com.comedy24.object;
 
 /**
  * Created by lequanghiep on 9/13/2016.
  */
-public class MyVideo {
+public class GroupVideoItem {
     private String name;
     private int img;
 
-    public MyVideo(String name, int img) {
+    public GroupVideoItem(String name, int img) {
         this.name = name;
         this.img = img;
     }
