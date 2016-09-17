@@ -1,5 +1,6 @@
 package comedy24.playup.com.comedy24.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,10 +18,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import comedy24.playup.com.comedy24.R;
 import comedy24.playup.com.comedy24.fragment.GroupVideoFragment;
 import comedy24.playup.com.comedy24.fragment.MyListVideoFragment;
+import comedy24.playup.com.comedy24.helper.HttpRequestHelper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GroupVideoFragment.OnFragmentInteractionListener, MyListVideoFragment.OnFragmentInteractionListener {
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity
 
         context = getApplicationContext();
         initTab();
+        new HttpRequestHelper().execute("http://www.mocky.io/v2/57daaa481100003f30d6eaa9");
+
     }
 
     @Override
