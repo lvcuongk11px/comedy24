@@ -3,6 +3,7 @@ package comedy24.playup.com.comedy24.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class MyListVideoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ListView listView = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,8 +76,17 @@ public class MyListVideoFragment extends Fragment {
         listViewVideoItems[2] = new ListViewVideoItem(30, "10:40", "abc");
         listViewVideoItems[3] = new ListViewVideoItem(40, "10:50", "abc");
         View view = inflater.inflate(R.layout.fragment_my_list_video, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.my_video_list);
+        listView = (ListView) view.findViewById(R.id.my_video_list);
         listView.setAdapter(new ListVideoItemAdapter(getActivity(), listViewVideoItems));
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.go_top);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                listView.setSelection(0);
+            }
+        });
         return view;
     }
 
@@ -108,7 +119,7 @@ public class MyListVideoFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -117,4 +128,12 @@ public class MyListVideoFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void goTop(View view) {
+        if (listView != null) {
+            listView.smoothScrollToPosition(0);
+        }
+    }
+
+
 }
