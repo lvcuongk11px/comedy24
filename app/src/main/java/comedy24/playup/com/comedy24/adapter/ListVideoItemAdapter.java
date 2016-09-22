@@ -53,9 +53,14 @@ public class ListVideoItemAdapter extends BaseAdapter {
                 relativeLayout.setBackground(context.getDrawable(R.drawable.girl));
             }
         }
-        TextView textView = (TextView) view.findViewById(R.id.video_info);
-        textView.setText(Html.fromHtml("<b>View:</b> " + videoItems.get(i).getViews() + "<br>" +
-                "<b>Time:</b> " + videoItems.get(i).getDuration()));
+        TextView videoInfo = (TextView) view.findViewById(R.id.video_info);
+        TextView videoTitle = (TextView) view.findViewById(R.id.video_title);
+
+        videoInfo.setText(Html.fromHtml("<b>View:</b> " + videoItems.get(i).getViews() + "<br>" +
+                "<b>Time:</b> " + videoItems.get(i).getDuration() + "<br>" +
+                "<b>Date:</b> " + videoItems.get(i).getPublish_date()));
+        videoTitle.setText(videoItems.get(i).getTitle());
+
         return view;
     }
 }

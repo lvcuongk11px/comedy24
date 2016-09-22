@@ -3,47 +3,48 @@ package comedy24.playup.com.comedy24.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import org.json.JSONException;
 
 import java.util.List;
 
-import comedy24.playup.com.comedy24.adapter.ListVideoItemAdapter;
+import comedy24.playup.com.comedy24.R;
+import comedy24.playup.com.comedy24.adapter.CategoryItemAdapter;
 import comedy24.playup.com.comedy24.helper.AsyncResponse;
 import comedy24.playup.com.comedy24.helper.HttpRequestHelper;
 import comedy24.playup.com.comedy24.helper.ParseJsonHelper;
-import comedy24.playup.com.comedy24.object.VideoItem;
-import comedy24.playup.com.comedy24.R;
+import comedy24.playup.com.comedy24.object.CategoryItem;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyListVideoFragment.OnFragmentInteractionListener} interface
+ * {@link CategoriesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyListVideoFragment#newInstance} factory method to
+ * Use the {@link CategoriesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyListVideoFragment extends Fragment implements AsyncResponse {
+public class CategoriesFragment extends Fragment implements AsyncResponse{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private View view = null;
-    private ListView listView = null;
     private ParseJsonHelper parseJsonHelper = new ParseJsonHelper();
+    private GridView gv;
     private OnFragmentInteractionListener mListener;
 
-    public MyListVideoFragment() {
+    public CategoriesFragment() {
         // Required empty public constructor
     }
 
@@ -53,11 +54,11 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MyListVideoFragment.
+     * @return A new instance of fragment CategoriesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MyListVideoFragment newInstance(String param1, String param2) {
-        MyListVideoFragment fragment = new MyListVideoFragment();
+    public static CategoriesFragment newInstance(String param1, String param2) {
+        CategoriesFragment fragment = new CategoriesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,24 +78,20 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_categories, container, false);
+        FragmentTabHost mTabHost = (FragmentTabHost) getActivity().findViewById(android.R.id.tabhost);
+        gv = (GridView) view.findViewById(R.id.my_griview);
+
+        String url = "https://demo8381638.mockable.io/api/categories";
+        if (mTabHost.getCurrentTabTag().equals("artist")) {
+            url = "https://demo8381638.mockable.io/api/categories";
+        }
+
         HttpRequestHelper httpRequestHelper = new HttpRequestHelper();
         httpRequestHelper.delegate = this;
-        httpRequestHelper.execute("http://www.mocky.io/v2/57e3e476110000d81e98e3c4");
+        httpRequestHelper.execute(url);
 
-        this.view = inflater.inflate(R.layout.fragment_my_list_video, container, false);
-        return this.view;
-    }
-
-    public void setListView(List<VideoItem> videoItems) {
-        listView = (ListView) view.findViewById(R.id.my_video_list);
-        listView.setAdapter(new ListVideoItemAdapter(getActivity(), videoItems));
-        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.go_top);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listView.setSelection(0);
-            }
-        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -102,6 +99,10 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    public void setGridView(List<CategoryItem> listCategory) {
+        gv.setAdapter(new CategoryItemAdapter(getActivity(), listCategory));
     }
 
     @Override
@@ -124,7 +125,7 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
     @Override
     public void processFinish(String output) {
         try {
-            setListView(parseJsonHelper.partJsonToListVideo(output));
+            setGridView(parseJsonHelper.partJsonToListCategory(output));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -135,7 +136,7 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -144,12 +145,4 @@ public class MyListVideoFragment extends Fragment implements AsyncResponse {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-    public void goTop(View view) {
-        if (listView != null) {
-            listView.smoothScrollToPosition(0);
-        }
-    }
-
-
 }

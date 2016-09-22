@@ -8,30 +8,30 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import comedy24.playup.com.comedy24.object.VideoItem;
+import java.util.List;
+
+import comedy24.playup.com.comedy24.object.CategoryItem;
 import comedy24.playup.com.comedy24.R;
 
 /**
  * Created by lequanghiep on 9/13/2016.
  */
-public class GroupVideoItemAdapter extends BaseAdapter {
+public class CategoryItemAdapter extends BaseAdapter {
     private Context mContext;
-    private VideoItem[] listVideo;
+    private List<CategoryItem> listCategory;
     private static LayoutInflater inflater = null;
 
-    public GroupVideoItemAdapter(FragmentActivity groupVideo, VideoItem[] listVideo) {
+    public CategoryItemAdapter(FragmentActivity groupVideo, List<CategoryItem> listCategory) {
         this.mContext = groupVideo;
-        this.listVideo = listVideo;
+        this.listCategory = listCategory;
         inflater = (LayoutInflater) this.mContext.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Toast.makeText(mContext, "You Load", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public int getCount() {
-        return listVideo.length;
+        return listCategory.size();
     }
 
     @Override
@@ -51,8 +51,8 @@ public class GroupVideoItemAdapter extends BaseAdapter {
         TextView tv = (TextView) rowView.findViewById(R.id.name);
         ImageView img = (ImageView) rowView.findViewById(R.id.imageView);
 
-        tv.setText(listVideo[i].getTitle());
-//        img.setImageResource(listVideo[i].getThumb());
+        tv.setText(listCategory.get(i).getTitle());
+        img.setImageResource(R.mipmap.video_icon);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

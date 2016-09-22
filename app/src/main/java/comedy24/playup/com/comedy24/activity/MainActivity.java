@@ -1,15 +1,11 @@
 package comedy24.playup.com.comedy24.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,17 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import java.io.IOException;
 
 import comedy24.playup.com.comedy24.R;
-import comedy24.playup.com.comedy24.fragment.GroupVideoFragment;
-import comedy24.playup.com.comedy24.fragment.MyListVideoFragment;
-import comedy24.playup.com.comedy24.helper.HttpRequestHelper;
+import comedy24.playup.com.comedy24.fragment.CategoriesFragment;
+import comedy24.playup.com.comedy24.fragment.VideosFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, GroupVideoFragment.OnFragmentInteractionListener, MyListVideoFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CategoriesFragment.OnFragmentInteractionListener, VideosFragment.OnFragmentInteractionListener {
     private Context context = null;
 
     @Override
@@ -91,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = null;
         if (id == R.id.nav_camera) {
-            fragment = new GroupVideoFragment();
+            fragment = new CategoriesFragment();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -116,9 +108,9 @@ public class MainActivity extends AppCompatActivity
         FragmentTabHost  mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Tab 1", null), GroupVideoFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Tab 2", null), MyListVideoFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("Tab 3", null), GroupVideoFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("newest").setIndicator("Mới nhất", null), VideosFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("comedy").setIndicator("Show hài", null), CategoriesFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("artist").setIndicator("Nghệ sĩ", null), CategoriesFragment.class, null);
     }
 
     @Override

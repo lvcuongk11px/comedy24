@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import comedy24.playup.com.comedy24.object.CategoryItem;
 import comedy24.playup.com.comedy24.object.VideoItem;
 
 /**
@@ -32,5 +33,22 @@ public class ParseJsonHelper {
             }
         }
         return videoItems;
+    }
+
+    public List<CategoryItem> partJsonToListCategory(String json) throws JSONException {
+        List<CategoryItem> categoryItems = new ArrayList<CategoryItem>();
+        if (json != "") {
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray listCategory = jsonObject.getJSONObject("data").getJSONArray("categories");
+            for (int i = 0; i < listCategory.length(); i++) {
+                JSONObject item = listCategory.getJSONObject(i);
+                categoryItems.add(new CategoryItem(
+                        Integer.parseInt(item.optString("id").toString()),
+                        item.optString("title"),
+                        item.optString("thumb")
+                ));
+            }
+        }
+        return categoryItems;
     }
 }
