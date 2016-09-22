@@ -10,8 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import comedy24.playup.com.comedy24.R;
-import comedy24.playup.com.comedy24.object.ListViewVideoItem;
+import comedy24.playup.com.comedy24.object.VideoItem;
 
 /**
  * Created by lequanghiep on 9/15/2016.
@@ -19,16 +21,16 @@ import comedy24.playup.com.comedy24.object.ListViewVideoItem;
 public class ListVideoItemAdapter extends BaseAdapter {
 
     private final Activity context;
-    private final ListViewVideoItem[] listViewVideoItems;
+    private final List<VideoItem> videoItems;
 
-    public ListVideoItemAdapter(Activity context, ListViewVideoItem[] listViewVideoItems) {
+    public ListVideoItemAdapter(Activity context, List<VideoItem> videoItems) {
         this.context = context;
-        this.listViewVideoItems = listViewVideoItems;
+        this.videoItems = videoItems;
     }
 
     @Override
     public int getCount() {
-        return listViewVideoItems.length;
+        return videoItems.size();
     }
 
     @Override
@@ -52,8 +54,8 @@ public class ListVideoItemAdapter extends BaseAdapter {
             }
         }
         TextView textView = (TextView) view.findViewById(R.id.video_info);
-        textView.setText(Html.fromHtml("<b>View:</b> " + listViewVideoItems[i].getView() + "<br>" +
-                "<b>Time:</b> " + listViewVideoItems[i].getTime()));
+        textView.setText(Html.fromHtml("<b>View:</b> " + videoItems.get(i).getViews() + "<br>" +
+                "<b>Time:</b> " + videoItems.get(i).getDuration()));
         return view;
     }
 }

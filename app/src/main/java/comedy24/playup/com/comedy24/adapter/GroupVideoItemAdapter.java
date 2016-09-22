@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import comedy24.playup.com.comedy24.object.GroupVideoItem;
+import comedy24.playup.com.comedy24.object.VideoItem;
 import comedy24.playup.com.comedy24.R;
 
 /**
@@ -18,10 +18,10 @@ import comedy24.playup.com.comedy24.R;
  */
 public class GroupVideoItemAdapter extends BaseAdapter {
     private Context mContext;
-    private GroupVideoItem[] listVideo;
+    private VideoItem[] listVideo;
     private static LayoutInflater inflater = null;
 
-    public GroupVideoItemAdapter(FragmentActivity groupVideo, GroupVideoItem[] listVideo) {
+    public GroupVideoItemAdapter(FragmentActivity groupVideo, VideoItem[] listVideo) {
         this.mContext = groupVideo;
         this.listVideo = listVideo;
         inflater = (LayoutInflater) this.mContext.
@@ -51,8 +51,8 @@ public class GroupVideoItemAdapter extends BaseAdapter {
         TextView tv = (TextView) rowView.findViewById(R.id.name);
         ImageView img = (ImageView) rowView.findViewById(R.id.imageView);
 
-        tv.setText(listVideo[i].getName());
-        img.setImageResource(listVideo[i].getImg());
+        tv.setText(listVideo[i].getTitle());
+//        img.setImageResource(listVideo[i].getThumb());
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

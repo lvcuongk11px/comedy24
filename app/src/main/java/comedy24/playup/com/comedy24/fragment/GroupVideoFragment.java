@@ -7,10 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-
-import comedy24.playup.com.comedy24.object.GroupVideoItem;
-import comedy24.playup.com.comedy24.adapter.GroupVideoItemAdapter;
 import comedy24.playup.com.comedy24.R;
 
 
@@ -69,15 +65,9 @@ public class GroupVideoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        GroupVideoItem[] groupVideoItems = new GroupVideoItem[4];
-        groupVideoItems[0] = new GroupVideoItem("video 1", R.mipmap.video_icon);
-        groupVideoItems[1] = new GroupVideoItem("video 2", R.mipmap.video_icon);
-        groupVideoItems[2] = new GroupVideoItem("video 3", R.mipmap.video_icon);
-        groupVideoItems[3] = new GroupVideoItem("video 4", R.mipmap.video_icon);
-
         View view = inflater.inflate(R.layout.fragment_group_video, container, false);
-        GridView gv = (GridView) view.findViewById(R.id.my_griview);
-        gv.setAdapter(new GroupVideoItemAdapter(getActivity(), groupVideoItems));
+//        GridView gv = (GridView) view.findViewById(R.id.my_griview);
+//        gv.setAdapter(new GroupVideoItemAdapter(getActivity(), groupVideoItems));
         return view;
     }
 

@@ -15,6 +15,8 @@ import java.net.URL;
  * Created by lequanghiep on 9/15/2016.
  */
 public class HttpRequestHelper extends AsyncTask<String, Void, String> {
+    public AsyncResponse delegate = null;
+
     private String readStream(InputStream is) {
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -47,6 +49,6 @@ public class HttpRequestHelper extends AsyncTask<String, Void, String> {
     }
 
     protected void onPostExecute(String result) {
-        Log.i("avc", result);
+        delegate.processFinish(result);
     }
 }

@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity
 
         context = getApplicationContext();
         initTab();
-        new HttpRequestHelper().execute("http://www.mocky.io/v2/57daaa481100003f30d6eaa9");
-
     }
 
     @Override
