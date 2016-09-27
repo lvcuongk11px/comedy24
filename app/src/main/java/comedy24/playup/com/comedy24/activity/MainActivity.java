@@ -81,21 +81,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = null;
-        if (id == R.id.nav_camera) {
-            fragment = new CategoriesFragment();
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.video_popular) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.video_near) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.video_like) {
 
-        }
+        } else if (id == R.id.video_suggest) {
 
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(android.R.id.tabcontent, fragment).commit();
+        } else if (id == R.id.help_me) {
+
+        } else if (id == R.id.my_differ_app) {
 
         }
 
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initTab() {
-        FragmentTabHost  mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         mTabHost.addTab(mTabHost.newTabSpec("newest").setIndicator("Mới nhất", null), VideosFragment.class, null);

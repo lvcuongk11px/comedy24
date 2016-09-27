@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:title="Xem nhiều" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:title="Xem gần đây" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:title="Đề xuất video ưa thích" />
-        <item
-            android:id="@+id/nav_manage"
-            android:title="Góp ý" />
-    </group>
+    <item android:title="CHỨC NĂNG">
+        <menu>
+            <item
+                android:id="@+id/video_popular"
+                android:title="Video xem nhiều nhất" />
+            <item
+                android:id="@+id/video_near"
+                android:title="Video xem gần đây" />
+            <item
+                android:id="@+id/video_like"
+                android:title="Video yêu thích" />
+            <item
+                android:id="@+id/video_suggest"
+                android:title="Đề xuất video" />
+            <item
+                android:id="@+id/help_me"
+                android:title="Góp ý ứng dụng" />
+        </menu>
+    </item>
+    <item android:title="GIỚI THIỆU APP">
+        <menu>
+            <item
+                android:id="@+id/my_differ_app"
+                android:title="Bói Dịch" />
+        </menu>
+    </item>
 </menu>
