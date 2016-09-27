@@ -82,7 +82,7 @@ public class VideosFragment extends Fragment implements AsyncResponse {
                              Bundle savedInstanceState) {
         HttpRequestHelper httpRequestHelper = new HttpRequestHelper();
         httpRequestHelper.delegate = this;
-        httpRequestHelper.execute("http://demo8381638.mockable.io/api/videos");
+        httpRequestHelper.execute("http://phatgiavodao.com/comedy/anewvideo.php");
 
         this.view = inflater.inflate(R.layout.fragment_videos, container, false);
         return this.view;

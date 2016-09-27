@@ -28,7 +28,7 @@ public class ParseJsonHelper {
                         item.optString("thumb"),
                         item.optString("duration"),
                         Integer.parseInt(item.optString("views").toString()),
-                        item.optString("publish_date")
+                        item.optString("date")
                 ));
             }
         }

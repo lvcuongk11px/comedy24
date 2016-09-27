@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import comedy24.playup.com.comedy24.R;
+import comedy24.playup.com.comedy24.helper.DownloadImageTask;
 import comedy24.playup.com.comedy24.object.VideoItem;
 
 /**
@@ -48,11 +49,8 @@ public class ListVideoItemAdapter extends BaseAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         view = inflater.inflate(R.layout.list_video_item, null);
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.video_item);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                relativeLayout.setBackground(context.getDrawable(R.drawable.girl));
-            }
-        }
+        new DownloadImageTask(view.getResources(), relativeLayout).execute(videoItems.get(i).getThumb());
+
         TextView videoInfo = (TextView) view.findViewById(R.id.video_info);
         TextView videoTitle = (TextView) view.findViewById(R.id.video_title);
 
