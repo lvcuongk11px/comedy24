@@ -1,6 +1,7 @@
 package comedy24.playup.com.comedy24.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,12 +9,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONException;
 
 import java.util.List;
 
+import comedy24.playup.com.comedy24.activity.VideoPlayer;
 import comedy24.playup.com.comedy24.adapter.ListVideoItemAdapter;
 import comedy24.playup.com.comedy24.helper.AsyncResponse;
 import comedy24.playup.com.comedy24.helper.HttpRequestHelper;
@@ -85,9 +88,17 @@ public class VideosFragment extends Fragment implements AsyncResponse {
         return this.view;
     }
 
-    public void setListView(List<VideoItem> videoItems) {
+    public void setListView(final List<VideoItem> videoItems) {
         listView = (ListView) view.findViewById(R.id.my_video_list);
         listView.setAdapter(new ListVideoItemAdapter(getActivity(), videoItems));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), VideoPlayer.class);
+                intent.putExtra("videoId", videoItems.get(i).getContent_id());
+                startActivity(intent);
+            }
+        });
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.go_top);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
